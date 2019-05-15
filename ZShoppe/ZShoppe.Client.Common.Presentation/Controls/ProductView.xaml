@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Frame x:Class="ZShoppe.Client.Common.Presentation.Controls.ProductView"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:effects="clr-namespace:ZShoppe.Client.Common.Presentation.Effects;assembly=ZShoppe.Client.Common.Presentation"
+       xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+       x:Name="PageRoot"
+       Margin="15,0,0,0"
+       Padding="2"
+       BackgroundColor="Transparent"
+       CornerRadius="0"
+       HasShadow="False">
+
+    <Frame Padding="0"
+           BackgroundColor="White"
+           BorderColor="White"
+           CornerRadius="5"
+           HasShadow="True">
+        <StackLayout Padding="5" Orientation="Vertical">
+            <ffimage:CachedImage Aspect="AspectFit"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="120"
+                                 Source="http://img8.flixcart.com/www/promos/new/20130527-230650-homepage-banner-tuesday-sale-electronics.jpg" />
+            <Label FontFamily="Lato-Bold.ttf#Lato-Bold"
+                   FontSize="22"
+                   HorizontalOptions="Start"
+                   HorizontalTextAlignment="Start"
+                   Text="{Binding OriginalPrice}"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center" />
+            <Label effects:MaxLinesEffect.MaxLines="2"
+                   FontFamily="Lato-Light.ttf#Lato-Light"
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Start"
+                   Text="{Binding ProductName}"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center" />
+            <Button x:Name="AddToCartButton"
+                    Margin="5,2,5,2"
+                    BackgroundColor="Accent"
+                    BorderColor="LightGray"
+                    BorderWidth="1"
+                    Command="{Binding AddToCartCommand}"
+                    CommandParameter="{Binding Source={x:Reference PageRoot}, Path=BindingContext}"
+                    CornerRadius="10"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Add  +"
+                    TextColor="White"
+                    VerticalOptions="End" />
+        </StackLayout>
+    </Frame>
+</Frame>

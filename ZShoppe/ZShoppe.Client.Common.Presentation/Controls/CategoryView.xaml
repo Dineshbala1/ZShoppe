@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid x:Class="ZShoppe.Client.Common.Presentation.Controls.CategoryView"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:controls="clr-namespace:ZShoppe.Client.Common.Presentation.Controls;assembly=ZShoppe.Client.Common.Presentation"
+      xmlns:effects="clr-namespace:ZShoppe.Client.Common.Presentation.Effects;assembly=ZShoppe.Client.Common.Presentation"
+      xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+      xmlns:presentation="clr-namespace:ZShoppe.Client.Common.Presentation;assembly=ZShoppe.Client.Common.Presentation"
+      x:Name="PageRoot"
+      Margin="2,2,2,0"
+      Padding="2"
+      BackgroundColor="White">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <presentation:BindingProxy x:Key="Proxy" Data="{Binding Source={x:Reference PageRoot}, Path=BindingContext}" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Label Grid.Row="0"
+           Margin="5,0,0,0"
+           FontFamily="Lato-Bold.ttf#Lato-Bold"
+           FontSize="24"
+           Text="{Binding DisplayName}"
+           TextColor="Black"
+           VerticalTextAlignment="Center" />
+
+    <controls:GridBindable Grid.Row="1"
+                           ColumnSpacing="0"
+                           ItemsSource="{Binding CategoriesModels}"
+                           Orientation="Horizontal"
+                           RowSpacing="0">
+        <controls:GridBindable.ItemTemplate>
+            <DataTemplate>
+                <Frame Margin="5"
+                       Padding="2"
+                       BackgroundColor="Transparent"
+                       CornerRadius="0"
+                       HasShadow="False">
+                    <Frame Padding="0"
+                           BackgroundColor="White"
+                           BorderColor="White"
+                           CornerRadius="5"
+                           HasShadow="True">
+                        <StackLayout Padding="5" Orientation="Vertical">
+
+                            <forms:CachedImage Aspect="AspectFit"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="120"
+                                               Source="http://img8.flixcart.com/www/promos/new/20130527-230650-homepage-banner-tuesday-sale-electronics.jpg" />
+
+                            <Label FontFamily="Lato-Light.ttf#Lato-Light"
+                                   FontSize="18"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   Text="{Binding CategoryName}"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center" />
+                            <Button Margin="5,2,5,2"
+                                    BackgroundColor="Accent"
+                                    BorderColor="LightGray"
+                                    BorderWidth="1"
+                                    Command="{Binding Data.NavigateToCategoryDetailsCommand, Source={StaticResource Proxy}}"
+                                    CommandParameter="{Binding .}"
+                                    CornerRadius="10"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="View Products"
+                                    TextColor="White"
+                                    VerticalOptions="End">
+
+                                <Button.Effects>
+                                    <effects:SelectionEffect />
+                                </Button.Effects>
+                            </Button>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Data.NavigateToCategoryDetailsCommand, Source={StaticResource Proxy}}" CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+
+                        </StackLayout>
+                    </Frame>
+                </Frame>
+
+            </DataTemplate>
+        </controls:GridBindable.ItemTemplate>
+    </controls:GridBindable>
+</Grid>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:NavigationContentPage x:Class="ZShoppe.Client.Details.Views.ProductDetailsPage"
+                             xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                             xmlns:converters="clr-namespace:ZShoppe.Client.Common.Presentation.Converters;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                             xmlns:pages="clr-namespace:ZShoppe.Client.Common.Presentation.Pages;assembly=ZShoppe.Client.Common.Presentation"
+                             Title="{Binding PageTitle}"
+                             mvvm:ViewModelLocator.AutowireViewModel="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="Margin" Value="0,1" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="BorderColor" Value="White" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView x:Name="ProductScrollview"
+                        HorizontalScrollBarVisibility="Never"
+                        Scrolled="ProductScrollview_OnScrolled"
+                        VerticalScrollBarVisibility="Never">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                                 Orientation="Vertical"
+                                 Spacing="0">
+                        <carousel:CarouselViewControl HeightRequest="200" ItemsSource="{Binding RotatorItems}">
+                            <carousel:CarouselViewControl.ItemTemplate>
+                                <DataTemplate>
+                                    <forms:CachedImage Aspect="AspectFill" Source="{Binding Name}" />
+                                </DataTemplate>
+                            </carousel:CarouselViewControl.ItemTemplate>
+
+                        </carousel:CarouselViewControl>
+
+                        <BoxView BackgroundColor="Black"
+                                 HeightRequest="2"
+                                 HorizontalOptions="FillAndExpand" />
+                        <Grid>
+                            <Frame>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Margin="10,5"
+                                           FontFamily="Lato-Light.ttf#Lato-Light"
+                                           FontSize="28"
+                                           HorizontalOptions="StartAndExpand"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding ProductDetails.ProductName}"
+                                           TextColor="Black" />
+
+                                    <Label Margin="10,5"
+                                           FontFamily="Lato-Bold.ttf#Lato-Bold"
+                                           FontSize="20"
+                                           HorizontalOptions="StartAndExpand"
+                                           HorizontalTextAlignment="Start"
+                                           Text="{Binding ProductDetails.OriginalPrice, StringFormat='₹ {0}'}"
+                                           TextColor="Gray" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                        <Frame>
+                            <Label Margin="10,5"
+                                   FontFamily="Lato-Light.ttf#Lato-Light"
+                                   FontSize="18"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Text="{Binding ProductDetails.ProductDescription}"
+                                   TextColor="Gray" />
+                        </Frame>
+
+                        <Frame>
+                            <Label Margin="10,5"
+                                   FontFamily="Lato-Light.ttf#Lato-Light"
+                                   FontSize="18"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Text="{Binding ProductDetails.ProductMetaDescription}"
+                                   TextColor="Gray" />
+                        </Frame>
+
+                        <Frame x:Name="BuyBottomButton" IsVisible="False">
+                            <Grid ColumnSpacing="0" VerticalOptions="End">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0"
+                                        BackgroundColor="White"
+                                        CornerRadius="0"
+                                        Text="ADD TO CART"
+                                        TextColor="Black" />
+                                <Button Grid.Column="1"
+                                        BackgroundColor="Accent"
+                                        CornerRadius="0"
+                                        Text="BUY NOW"
+                                        TextColor="White" />
+                            </Grid>
+                        </Frame>
+
+                    </StackLayout>
+
+                    <Frame BackgroundColor="#80000000"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           HorizontalOptions="CenterAndExpand"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="CenterAndExpand">
+
+                        <ActivityIndicator BackgroundColor="Transparent"
+                                           HeightRequest="80"
+                                           HorizontalOptions="CenterAndExpand"
+                                           IsEnabled="{Binding IsBusy}"
+                                           IsRunning="{Binding IsBusy}"
+                                           IsVisible="{Binding IsBusy}"
+                                           VerticalOptions="CenterAndExpand"
+                                           WidthRequest="80"
+                                           Color="Accent" />
+                    </Frame>
+                </Grid>
+            </ScrollView>
+            <Grid x:Name="BuyButton"
+                  ColumnSpacing="0"
+                  VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        BackgroundColor="White"
+                        CornerRadius="0"
+                        Text="ADD TO CART"
+                        TextColor="Black" />
+                <Button Grid.Column="1"
+                        BackgroundColor="Accent"
+                        CornerRadius="0"
+                        Text="BUY NOW"
+                        TextColor="White" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</pages:NavigationContentPage>

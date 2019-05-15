@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:NavigationContentPage x:Class="ZShoppe.Client.WhiteboardHome.Views.DetailPage"
+                             xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:abstractions="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                             xmlns:controls="clr-namespace:ZShoppe.Client.Common.Presentation.Controls;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                             xmlns:pages="clr-namespace:ZShoppe.Client.Common.Presentation.Pages;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:presentation="clr-namespace:ZShoppe.Client.Common.Presentation;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:tiles="clr-namespace:ZShoppe.Client.WhiteboardHome.Views.Tiles;assembly=ZShoppe.Client.WhiteboardHome.Views"
+                             x:Name="PageRoot"
+                             Title="{Binding PageTitle}"
+                             mvvm:ViewModelLocator.AutowireViewModel="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <presentation:BindingProxy x:Key="Proxy" Data="{Binding Source={x:Reference PageRoot}, Path=BindingContext}" />
+
+            <DataTemplate x:Key="EndTemplate">
+                <controls:FooterView />
+            </DataTemplate>
+
+            <DataTemplate x:Key="ProductTemplate">
+                <controls:ProductView ParentContext="{Binding Data, Source={StaticResource Proxy}}" />
+            </DataTemplate>
+
+            <tiles:ProductTemplateSelector x:Key="ProductTemplateSelector"
+                                           ProductEndTemplate="{StaticResource EndTemplate}"
+                                           ProductTemplate="{StaticResource ProductTemplate}" />
+
+            <DataTemplate x:Key="ListingItemTemplate">
+                <ViewCell>
+                    <controls:WhiteboardListView ItemTemplate="{StaticResource ProductTemplateSelector}" />
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CategoryTemplate">
+                <ViewCell>
+                    <controls:CategoryView />
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="AdvertismentTemplate">
+                <ViewCell>
+                    <abstractions:CarouselViewControl Margin="2"
+                                                      BackgroundColor="Transparent"
+                                                      HeightRequest="200"
+                                                      ItemsSource="{Binding AdvertisementModels}"
+                                                      ShowIndicators="True">
+                        <abstractions:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="Transparent">
+                                    <Frame Margin="5"
+                                           Padding="0"
+                                           BackgroundColor="White"
+                                           BorderColor="Transparent"
+                                           CornerRadius="10"
+                                           HasShadow="True">
+                                        <Grid>
+                                            <forms:CachedImage Aspect="AspectFill"
+                                                               BackgroundColor="Transparent"
+                                                               BitmapOptimizations="True"
+                                                               CacheType="Disk"
+                                                               FadeAnimationDuration="1000"
+                                                               FadeAnimationEnabled="True"
+                                                               FadeAnimationForCachedImages="False"
+                                                               HorizontalOptions="FillAndExpand"
+                                                               InvalidateLayoutAfterLoaded="False"
+                                                               LoadingDelay="250"
+                                                               LoadingPriority="Highest"
+                                                               Source="{Binding AdImageUrl}"
+                                                               VerticalOptions="FillAndExpand" />
+                                            <StackLayout BackgroundColor="Transparent"
+                                                         IsVisible="False"
+                                                         VerticalOptions="CenterAndExpand">
+                                                <Label HorizontalOptions="CenterAndExpand"
+                                                       HorizontalTextAlignment="Center"
+                                                       Text="{Binding AdHeader}"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       VerticalTextAlignment="Center" />
+                                                <Button BackgroundColor="Accent"
+                                                        BorderColor="Accent"
+                                                        Command="{Binding Data, Source={StaticResource Proxy}}"
+                                                        CornerRadius="10"
+                                                        HorizontalOptions="Center"
+                                                        Text="Shop Now"
+                                                        VerticalOptions="Center" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </abstractions:CarouselViewControl.ItemTemplate>
+                    </abstractions:CarouselViewControl>
+                </ViewCell>
+            </DataTemplate>
+
+            <tiles:TileTemplateSelector x:Key="TileTemplateSelector"
+                                        AdvertismentTileTemplate="{StaticResource AdvertismentTemplate}"
+                                        CategoryTileTemplate="{StaticResource CategoryTemplate}"
+                                        ProductTileTemplate="{StaticResource ListingItemTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <ListView CachingStrategy="RecycleElement"
+                      HasUnevenRows="True"
+                      ItemTemplate="{StaticResource TileTemplateSelector}"
+                      ItemsSource="{Binding TileModels}"
+                      SelectionMode="None"
+                      SeparatorVisibility="None" />
+
+            <Frame BackgroundColor="#80000000"
+                   BorderColor="Transparent"
+                   CornerRadius="10"
+                   HasShadow="True"
+                   HorizontalOptions="CenterAndExpand"
+                   IsVisible="{Binding IsBusy}"
+                   VerticalOptions="CenterAndExpand">
+
+                <ActivityIndicator BackgroundColor="Transparent"
+                                   HeightRequest="80"
+                                   HorizontalOptions="CenterAndExpand"
+                                   IsEnabled="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   VerticalOptions="CenterAndExpand"
+                                   WidthRequest="80"
+                                   Color="Accent" />
+            </Frame>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</pages:NavigationContentPage>

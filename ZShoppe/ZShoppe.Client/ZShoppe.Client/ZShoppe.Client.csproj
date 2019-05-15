@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.2.0.46" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.2.0.46" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Contracts\ZShoppe.Client.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Presentation\ZShoppe.Client.Common.Presentation.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Services\ZShoppe.Client.Common.Services.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.ViewModels\ZShoppe.Client.Common.ViewModels.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.Details.ViewModel\ZShoppe.Client.Details.ViewModels.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.Details.Views\ZShoppe.Client.Details.Views.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.Services\ZShoppe.Client.WhiteboardHome.Services.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.ViewModel\ZShoppe.Client.WhiteboardHome.ViewModels.csproj" />
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.Views\ZShoppe.Client.WhiteboardHome.Views.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AADCCB48-A2B9-4397-8A41-C2E5CA5916C8}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZShoppe.Client.Droid</RootNamespace>
+    <AssemblyName>ZShoppe.Client.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <JavaMaximumHeapSize />
+    <JavaOptions />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <EnableProguard>true</EnableProguard>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CarouselView.FormsPlugin">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Karamunting.Android.JdAlexander.LikeButton">
+      <Version>0.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Unity.Forms">
+      <Version>7.0.0.396</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.Debug">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.RollingFile">
+      <Version>3.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.Xamarin">
+      <Version>0.1.29</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>16.2.0.46</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
+      <Version>16.2.0.46</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effects\AndroidViewLifecycleEffect.cs" />
+    <Compile Include="Effects\LabelMaxLinesEffect.cs" />
+    <Compile Include="Effects\SelectionEffect.cs" />
+    <Compile Include="FrameRendererExt.cs" />
+    <Compile Include="Helpers\LogHelpers.cs" />
+    <Compile Include="ImageServiceLogger.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Lato-Black.ttf" />
+    <AndroidAsset Include="Assets\Lato-Bold.ttf" />
+    <AndroidAsset Include="Assets\Lato-Light.ttf" />
+    <AndroidAsset Include="Assets\Lato-Regular.ttf" />
+    <AndroidAsset Include="Assets\twitterheart.json" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tabbar.axml" />
+    <AndroidResource Include="Resources\layout\Toolbar.axml" />
+    <AndroidResource Include="Resources\values\styles.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Contracts\ZShoppe.Client.Common.Contracts.csproj">
+      <Project>{0f721c4c-c734-4d99-9f38-71329b1a4407}</Project>
+      <Name>ZShoppe.Client.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Presentation\ZShoppe.Client.Common.Presentation.csproj">
+      <Project>{6d9e71c8-88b8-4996-b4e8-426981fac3ce}</Project>
+      <Name>ZShoppe.Client.Common.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.Services\ZShoppe.Client.Common.Services.csproj">
+      <Project>{4cfb5048-5367-43fa-8d4e-1ce2a829d3e6}</Project>
+      <Name>ZShoppe.Client.Common.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.Common.ViewModels\ZShoppe.Client.Common.ViewModels.csproj">
+      <Project>{4e2e5d6e-848a-45b1-8814-85c16983566e}</Project>
+      <Name>ZShoppe.Client.Common.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.Details.ViewModel\ZShoppe.Client.Details.ViewModels.csproj">
+      <Project>{2c364f14-3e5c-4d57-bd0c-f5f060f0e087}</Project>
+      <Name>ZShoppe.Client.Details.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.Details.Views\ZShoppe.Client.Details.Views.csproj">
+      <Project>{8759ed56-35a6-42a8-98d6-0433d89fb13a}</Project>
+      <Name>ZShoppe.Client.Details.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.Services\ZShoppe.Client.WhiteboardHome.Services.csproj">
+      <Project>{ee068fbf-61e8-478b-8157-df23e596f0a8}</Project>
+      <Name>ZShoppe.Client.WhiteboardHome.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.ViewModel\ZShoppe.Client.WhiteboardHome.ViewModels.csproj">
+      <Project>{5949a63e-ef1d-4039-a9e1-7ae977c6f67d}</Project>
+      <Name>ZShoppe.Client.WhiteboardHome.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ZShoppe.Client.WhiteboardHome.Views\ZShoppe.Client.WhiteboardHome.Views.csproj">
+      <Project>{abf57a0e-f2b4-4e80-bfde-ff319ba473df}</Project>
+      <Name>ZShoppe.Client.WhiteboardHome.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZShoppe.Client\ZShoppe.Client.csproj">
+      <Project>{be7333dd-2159-4290-bebd-7f9fc58b01b3}</Project>
+      <Name>ZShoppe.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\colors.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

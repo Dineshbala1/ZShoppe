@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid x:Class="ZShoppe.Client.Common.Presentation.Controls.WhiteboardListView"
+      xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:controls="clr-namespace:ZShoppe.Client.Common.Presentation.Controls;assembly=ZShoppe.Client.Common.Presentation"
+      xmlns:effects="clr-namespace:ZShoppe.Client.Common.Presentation.Effects;assembly=ZShoppe.Client.Common.Presentation"
+      xmlns:presentation="clr-namespace:ZShoppe.Client.Common.Presentation;assembly=ZShoppe.Client.Common.Presentation"
+      xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+      x:Name="Root"
+      Margin="-5,0,-5,0"
+      Padding="50,0,0,0">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <presentation:BindingProxy x:Key="Proxy" Data="{Binding Source={x:Reference Root}, Path=BindingContext}" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Frame Margin="-40,5,10,5"
+           Padding="2"
+           BorderColor="Transparent"
+           CornerRadius="5"
+           HasShadow="False">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Margin="5,0,0,0"
+                   FontFamily="Lato-Bold.ttf#Lato-Bold"
+                   FontSize="24"
+                   Text="{Binding DisplayName}"
+                   TextColor="Black"
+                   VerticalTextAlignment="Center" />
+
+            <Button Grid.Row="0"
+                    Margin="5"
+                    BackgroundColor="Transparent"
+                    BorderColor="LightGray"
+                    BorderWidth="1"
+                    Command="{Binding Data.ActivateTileCommand, Source={StaticResource Proxy}}"
+                    CornerRadius="10"
+                    HeightRequest="30"
+                    HorizontalOptions="End"
+                    Text="View All"
+                    TextColor="Accent"
+                    VerticalOptions="Start" />
+
+        </Grid>
+    </Frame>
+
+    <syncfusion:SfListView x:Name="SfListView"
+                           Margin="-50,50,0,10"
+                           Padding="0,0,0,0"
+                           AutoFitMode="None"
+                           BackgroundColor="Transparent"
+                           HeightRequest="280"
+                           IsScrollBarVisible="False"
+                           ItemSize="180"
+                           ItemSpacing="0"
+                           ItemsSource="{Binding ProductModels}"
+                           Orientation="Horizontal"
+                           SelectionBackgroundColor="Transparent" />
+</Grid>

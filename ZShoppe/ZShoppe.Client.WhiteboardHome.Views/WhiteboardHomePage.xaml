@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:CustomMasterDetailPage x:Class="ZShoppe.Client.WhiteboardHome.Views.WhiteboardHomePage"
+                              xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                              xmlns:pages="clr-namespace:ZShoppe.Client.Common.Presentation.Pages;assembly=ZShoppe.Client.Common.Presentation"
+                              xmlns:views="clr-namespace:ZShoppe.Client.WhiteboardHome.Views;assembly=ZShoppe.Client.WhiteboardHome.Views"
+                              mvvm:ViewModelLocator.AutowireViewModel="True">
+
+    <MasterDetailPage.Master>
+        <views:MasterPage />
+    </MasterDetailPage.Master>
+
+</pages:CustomMasterDetailPage>

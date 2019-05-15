@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:CustomContentPage x:Class="ZShoppe.Client.WhiteboardHome.Views.MasterPage"
+                         xmlns="http://xamarin.com/schemas/2014/forms"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:controls="clr-namespace:ZShoppe.Client.Common.Presentation.Controls;assembly=ZShoppe.Client.Common.Presentation"
+                         xmlns:effects="clr-namespace:ZShoppe.Client.Common.Presentation.Effects;assembly=ZShoppe.Client.Common.Presentation"
+                         xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                         xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                         xmlns:pages="clr-namespace:ZShoppe.Client.Common.Presentation.Pages;assembly=ZShoppe.Client.Common.Presentation"
+                         xmlns:presentation="clr-namespace:ZShoppe.Client.Common.Presentation;assembly=ZShoppe.Client.Common.Presentation"
+                         x:Name="masterPage"
+                         Title="ZShoppe"
+                         mvvm:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <presentation:BindingProxy x:Key="Proxy" Data="{Binding Source={x:Reference masterPage}, Path=BindingContext}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
+                         BackgroundColor="Accent"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand">
+                <forms:CachedImage Margin="0,20,0,0"
+                                   Aspect="AspectFit"
+                                   Source="https://www.cloudninefertility.com/wp-content/uploads/2017/12/User-dummy-300x300.png"
+                                   VerticalOptions="Center" />
+                <Label FontSize="28"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"
+                       Text="Hello Guest !!"
+                       VerticalTextAlignment="Center" />
+
+                <StackLayout.Effects>
+                    <effects:SelectionEffect />
+                </StackLayout.Effects>
+
+            </StackLayout>
+
+            <ScrollView Grid.Row="1">
+                <controls:GridBindable ItemsSource="{Binding MenuItems}" Orientation="Vertical">
+                    <controls:GridBindable.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Button BackgroundColor="White"
+                                        BorderColor="LightGray"
+                                        BorderWidth="0.5"
+                                        Command="{Binding Data.NavigateToMenuCommand, Source={StaticResource Proxy}}"
+                                        CommandParameter="{Binding .}"
+                                        FontSize="18"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding .}"
+                                        TextColor="Black"
+                                        VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </DataTemplate>
+                    </controls:GridBindable.ItemTemplate>
+
+                </controls:GridBindable>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</pages:CustomContentPage>

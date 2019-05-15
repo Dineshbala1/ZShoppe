@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:NavigationContentPage x:Class="ZShoppe.Client.Details.Views.CategoryDetailsPage"
+                             xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:controls="clr-namespace:ZShoppe.Client.Common.Presentation.Controls;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:effects="clr-namespace:ZShoppe.Client.Common.Presentation.Effects;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                             xmlns:mvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+                             xmlns:pages="clr-namespace:ZShoppe.Client.Common.Presentation.Pages;assembly=ZShoppe.Client.Common.Presentation"
+                             xmlns:presentation="clr-namespace:ZShoppe.Client.Common.Presentation;assembly=ZShoppe.Client.Common.Presentation"
+                             x:Name="PageRoot"
+                             Title="{Binding PageTitle}"
+                             mvvm:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <presentation:BindingProxy x:Key="Proxy" Data="{Binding Source={x:Reference PageRoot}, Path=BindingContext}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" BackgroundColor="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding Category.CategoryName}"
+                   TextColor="Black"
+                   VerticalTextAlignment="Center" />
+
+            <Button Grid.Column="1"
+                    BackgroundColor="White"
+                    BorderColor="White"
+                    BorderWidth="1"
+                    Command="{Binding SortCommand}"
+                    CornerRadius="10"
+                    HorizontalOptions="End"
+                    Text="Sort By"
+                    VerticalOptions="Center" />
+
+            <Button Grid.Column="2"
+                    BackgroundColor="White"
+                    BorderColor="White"
+                    BorderWidth="1"
+                    Command="{Binding FilterCommand}"
+                    CornerRadius="10"
+                    HorizontalOptions="EndAndExpand"
+                    Text="Filter By"
+                    VerticalOptions="Center" />
+
+        </Grid>
+        <controls:TabletListView Grid.Row="1"
+                                 AutoFitMode="Height"
+                                 CanCustomizeContentLayout="False"
+                                 ItemsSource="{Binding ProductDetailsModels}"
+                                 SelectionBackgroundColor="Transparent"
+                                 SelectionMode="Single">
+            <controls:TabletListView.ItemTemplate>
+                <OnIdiom x:TypeArguments="DataTemplate">
+                    <OnIdiom.Tablet>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Frame Margin="0"
+                                       Padding="0"
+                                       BackgroundColor="White"
+                                       CornerRadius="5"
+                                       HasShadow="True">
+                                    <StackLayout Orientation="Vertical">
+                                        <!--  Header  -->
+                                        <forms:CachedImage Aspect="AspectFill"
+                                                           BackgroundColor="Transparent"
+                                                           HeightRequest="120"
+                                                           Source="http://img8.flixcart.com/www/promos/new/20130527-230650-homepage-banner-tuesday-sale-electronics.jpg" />
+
+                                        <!--  Body  -->
+                                        <StackLayout Margin="5,5" VerticalOptions="CenterAndExpand">
+                                            <Label effects:MaxLinesEffect.MaxLines="2"
+                                                   FontFamily="Lato-Bold.ttf#Lato-Bold"
+                                                   FontSize="18"
+                                                   HorizontalOptions="StartAndExpand"
+                                                   HorizontalTextAlignment="Start"
+                                                   Text="{Binding ProductName}"
+                                                   TextColor="Black"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   VerticalTextAlignment="Center" />
+
+                                            <Label FontFamily="Lato-Light.ttf#Lato-Light"
+                                                   FontSize="22"
+                                                   HorizontalOptions="Start"
+                                                   HorizontalTextAlignment="Start"
+                                                   Text="{Binding OriginalPrice}"
+                                                   TextColor="Gray"
+                                                   VerticalOptions="Center"
+                                                   VerticalTextAlignment="Center" />
+                                        </StackLayout>
+
+                                        <StackLayout Margin="5,5"
+                                                     HorizontalOptions="StartAndExpand"
+                                                     Orientation="Horizontal"
+                                                     Spacing="2">
+                                            <Button Margin="5,2,5,2"
+                                                    BackgroundColor="Accent"
+                                                    BorderColor="LightGray"
+                                                    BorderWidth="1"
+                                                    CommandParameter="{Binding .}"
+                                                    CornerRadius="10"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    Text="Add wishlist"
+                                                    TextColor="White"
+                                                    VerticalOptions="End">
+                                                <Button.Effects>
+                                                    <effects:SelectionEffect />
+                                                </Button.Effects>
+                                            </Button>
+                                        </StackLayout>
+
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Data.DetailsCommand, Source={StaticResource Proxy}}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </OnIdiom.Tablet>
+                    <OnIdiom.Phone>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid Padding="5">
+                                    <Frame Margin="0"
+                                           Padding="0"
+                                           BackgroundColor="White"
+                                           CornerRadius="5"
+                                           HasShadow="True">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="5" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <!--  Header  -->
+                                            <forms:CachedImage Grid.Column="0"
+                                                               BackgroundColor="Transparent"
+                                                               HeightRequest="150"
+                                                               Source="http://img8.flixcart.com/www/promos/new/20130527-230650-homepage-banner-tuesday-sale-electronics.jpg"
+                                                               WidthRequest="100" />
+
+                                            <StackLayout Grid.Column="2" Orientation="Vertical">
+                                                <!--  Body  -->
+                                                <StackLayout Margin="5,5" VerticalOptions="CenterAndExpand">
+                                                    <Label effects:MaxLinesEffect.MaxLines="2"
+                                                           FontFamily="Lato-Bold.ttf#Lato-Bold"
+                                                           FontSize="18"
+                                                           HorizontalOptions="StartAndExpand"
+                                                           HorizontalTextAlignment="Start"
+                                                           Text="{Binding ProductName}"
+                                                           TextColor="Black"
+                                                           VerticalOptions="CenterAndExpand"
+                                                           VerticalTextAlignment="Center" />
+
+                                                    <Label FontFamily="Lato-Light.ttf#Lato-Light"
+                                                           FontSize="22"
+                                                           HorizontalOptions="Start"
+                                                           HorizontalTextAlignment="Start"
+                                                           Text="{Binding OriginalPrice}"
+                                                           TextColor="Gray"
+                                                           VerticalOptions="Center"
+                                                           VerticalTextAlignment="Center" />
+                                                </StackLayout>
+
+                                                <StackLayout Margin="5,5"
+                                                             HorizontalOptions="StartAndExpand"
+                                                             Orientation="Horizontal"
+                                                             Spacing="2">
+
+                                                    <Button Margin="5,2,5,2"
+                                                            BackgroundColor="Accent"
+                                                            BorderColor="LightGray"
+                                                            BorderWidth="1"
+                                                            Command="{Binding Data.SortCommand, Source={StaticResource Proxy}}"
+                                                            CornerRadius="10"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Text="ADD TO WISHLIST"
+                                                            TextColor="White"
+                                                            VerticalOptions="End">
+                                                        <Button.Effects>
+                                                            <effects:SelectionEffect />
+                                                        </Button.Effects>
+                                                    </Button>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Data.DetailsCommand, Source={StaticResource Proxy}}" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </OnIdiom.Phone>
+                </OnIdiom>
+            </controls:TabletListView.ItemTemplate>
+        </controls:TabletListView>
+
+        <Frame Grid.Row="0"
+               Grid.RowSpan="2"
+               BackgroundColor="#80000000"
+               BorderColor="Transparent"
+               CornerRadius="10"
+               HasShadow="True"
+               HorizontalOptions="CenterAndExpand"
+               IsVisible="{Binding IsBusy}"
+               VerticalOptions="CenterAndExpand">
+
+            <ActivityIndicator BackgroundColor="Transparent"
+                               HeightRequest="80"
+                               HorizontalOptions="CenterAndExpand"
+                               IsEnabled="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               VerticalOptions="CenterAndExpand"
+                               WidthRequest="80"
+                               Color="Accent" />
+        </Frame>
+    </Grid>
+</pages:NavigationContentPage>
